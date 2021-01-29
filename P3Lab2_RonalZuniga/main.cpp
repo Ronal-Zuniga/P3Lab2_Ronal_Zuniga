@@ -6,6 +6,7 @@ using namespace std;
 void imprimirArreglo(int []);
 void arregloOrdenado(int [], int);
 string evaluarToken(string);
+double sumatoria(int, double);
 
 int main(int argc, char** argv) {
 	int opcion = 0;
@@ -18,7 +19,7 @@ int main(int argc, char** argv) {
 		cout << "Ingrese la opcion que desea: ";
 		cin >> opcion;
 		cout << endl;
-		
+
 		while(opcion < 0 || opcion > 4) {
 			cout << "Ingrese una opcion dentro del rango" << endl;
 			cout << "Ingrese la opcion que desea: ";
@@ -57,6 +58,7 @@ int main(int argc, char** argv) {
 				cout << "Solucion = false" << endl << endl;
 			}//fin de decision anidada
 			cout << endl;
+			cout << endl;
 		}//fin opcion 1
 
 		if(opcion == 2) {
@@ -64,6 +66,7 @@ int main(int argc, char** argv) {
 			cout << "Arreglo Original" << endl;
 			int arr [20];
 			srand((unsigned)time(0));
+			cout << "   ";
 			for(int i = 0; i < 20; i++) {//llena el arreglo con numeros aleatorios
 				arr[i] = 0 + (rand()%99);
 				cout << arr[i] << "   ";
@@ -72,10 +75,17 @@ int main(int argc, char** argv) {
 			cout << "Arreglo ordenado" << endl;
 			arregloOrdenado(arr, 20);
 			cout << endl;
+			cout << endl;
 		}//fin opcion 2
 
 		if(opcion == 3) {
-			
+			cout << "Sumatoria" << endl;
+			int n;
+			cout << "Ingrese el Limite de la sumatoria: ";
+			cin >> n;
+			cout << "La sumatoria con n = " << n << " es = " << sumatoria(n,0.0);
+			cout << endl;
+			cout << endl;
 		}//fin opcion 3
 
 	}//fin while Menu
@@ -101,8 +111,9 @@ void arregloOrdenado(int arreglo[], int tamano) {
 }//fin metodo recursivo de ordenamiento
 
 void imprimirArreglo(int arreglo[]) {
-	for	(int i = 0; i < 20; i++) {
-		cout << arreglo [i] << "  ";
+	cout << "   ";
+	for(int i = 0; i < 20; i++) {
+		cout << arreglo [i] << "   ";
 	}
 	cout << endl;
 }//fin metodo imprimir
@@ -129,3 +140,15 @@ string evaluarToken(string token) {//metodo para evaluar las subcadenas o tokens
 	}
 	return resultado;
 }//fin metodo evaluacion de subcadena
+
+double sumatoria(int n, double total){
+    if(n == 0){
+        return total;
+    }else{
+        double numerador = (2 * n) - 1;
+        double denominador = n * (n + 1);
+        double division = (numerador / denominador);
+        total += division;
+        sumatoria(n-1, total);
+    }//fin decision anidada
+}//fin de metodo recursivo sumatoria
